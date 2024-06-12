@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+</head>
+<body>
+    <audio id="audio" controls>
+        <source src="https://drive.google.com/file/d/1eIAzv6r0tzqxCoXmYwP7GhnFlVV78uF8/view?usp=drive_link" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+    <script>
+        const player = new Plyr('#audio');
+        player.on('play', function() {
+            player.off('play'); // Desactivar reproducción futura
+        });
+    </script>
+</body>
+</html>
