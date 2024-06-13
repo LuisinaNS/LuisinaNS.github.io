@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+</head>
+<body>
+    <audio id="audio" controls>
+        <source src="audios/Frase1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+    <script>
+        const player = new Plyr('#audio');
+        const audioElement = document.getElementById('audio');
+        const audioPlayedKey = 'Frase1';
+
+        // Verificar si el audio ya ha sido reproducido
+        if (localStorage.getItem(audioPlayedKey)) {
+            player.destroy();
+            document.getElementById("audio").remove(); // Eliminar el elemento de audio del DOM
+        }
+
+        player.on('play', function() {
+            player.off('play'); // Desactivar futuros eventos de reproducción
+            audioElement.controls = false; // Desactivar controles del reproductor
+
+            // Guardar en localStorage que el audio ha sido reproducido
+            localStorage.setItem(audioPlayedKey, 'true');
+        });
+
+        player.on('ended', function() {
+            player.destroy(); // Destruir el reproductor al finalizar el audio
+            document.getElementById("audio").remove(); // Eliminar el elemento de audio del DOM
+        });
+    </script>
+</body>
+</html>
