@@ -16,7 +16,7 @@
 
         // Verificar si el audio ya ha sido reproducido
         if (localStorage.getItem(audioPlayedKey)) {
-            audioElement.remove(); // Eliminar el elemento de audio
+            document.getElementById("audio").remove(); // Eliminar el elemento de audio del DOM
         }
 
         player.on('play', function() {
