@@ -29,7 +29,7 @@
 
         player.on('ended', function() {
             player.destroy(); // Destruir el reproductor al finalizar el audio
-            audioElement.remove(); // Eliminar el elemento de audio del DOM
+            document.getElementById("audio").remove(); // Eliminar el elemento de audio del DOM
         });
     </script>
 </body>
