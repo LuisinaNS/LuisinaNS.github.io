@@ -19,24 +19,20 @@
 
         if (playCount >= maxPlays) {
             player.destroy();
-            audioElement.remove(); 
+            document.getElementById("audio").remove();
         }
 
         player.on('play', function() {
-            audioElement.controls = false; 
-
             playCount++;
             localStorage.setItem(audioPlayedKey, playCount);
 
             if (playCount >= maxPlays) {
-                player.destroy();
-                audioElement.remove(); 
+                audioElement.controls = false;
+                player.once('ended', function() {
+                    player.destroy();
+                    document.getElementById("audio").remove();
+                });
             }
-        });
-
-        player.on('ended', function() {
-            player.destroy(); 
-            audioElement.remove(); 
         });
     </script>
 </body>
